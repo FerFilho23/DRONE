@@ -1,5 +1,5 @@
 # DRONE
-Em Construção!!
+Em Construção - Under Development
 
 
 http://www.brokking.net/
