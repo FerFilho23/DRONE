@@ -16,7 +16,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////
 
 #include <Wire.h>                          //Include the Wire.h library so we can communicate with the gyro.
-HardWire HWire(2, I2C_FAST_MODE);          //Initiate I2C port 2 at 400kHz.
+TwoWire HWire(2, I2C_FAST_MODE);          //Initiate I2C port 2 at 400kHz.
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //PID gain and limit settings
@@ -149,7 +149,7 @@ void setup() {
   error = 0;                                                    //Reset the error status to 0.
 
   //Wait until the throtle is set to the lower position.
-  while (channel_3 < 990 || channel_3 > 1050)  {
+  while (channel_3 < 990 || channel_3 > 1080)  {
     error = 4;                                                  //Set the error status to 4.
     error_signal();                                             //Show the error via the red LED.
     delay(4);
@@ -223,9 +223,9 @@ void loop() {
 
 
   //For starting the motors: throttle low and yaw left (step 1).
-  if (channel_3 < 1050 && channel_4 < 1050)start = 1;
+  if (channel_3 < 1080 && channel_4 < 1080)start = 1;
   //When yaw stick is back in the center position start the motors (step 2).
-  if (start == 1 && channel_3 < 1050 && channel_4 > 1450) {
+  if (start == 1 && channel_3 < 1080 && channel_4 > 1450) {
     start = 2;
 
     green_led(LOW);                                                                //Turn off the green led.
@@ -242,7 +242,7 @@ void loop() {
     pid_last_yaw_d_error = 0;
   }
   //Stopping the motors: throttle low and yaw right.
-  if (start == 2 && channel_3 < 1050 && channel_4 > 1950) {
+  if (start == 2 && channel_3 < 1080 && channel_4 > 1850) {
     start = 0;
     green_led(HIGH);                                                               //Turn on the green led.
   }

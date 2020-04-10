@@ -28,7 +28,7 @@ int16_t manual_gyro_roll_cal_value = 0;
 int16_t manual_gyro_yaw_cal_value = 0;
 
 
-HardWire HWire(2, I2C_FAST_MODE);
+TwoWire HWire(2, I2C_FAST_MODE);
 
 //Let's declare some variables so we can use them in the complete program.
 //int16_t = signed 16 bit integer
@@ -237,4 +237,3 @@ void green_led(int8_t level) {
   if (flip32)digitalWrite(PB3, !level);
   else digitalWrite(PB3, level);
 }
-
